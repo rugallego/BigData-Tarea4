@@ -1,0 +1,27 @@
+**CONSULTA DE AGREGACION PARA CALCULAR ESTADISTICA**
+
+db.vehiculos.aggregate([
+  // Etapa 1: Filtrar por Servicio Particular
+  { $match: { Servicio: "Particular" } },
+  // Etapa 2: Agrupación y cálculo de estadísticas
+  { $group: {
+      _id: "$Clase",
+      cantidad_vehiculos: { $sum: 1 },
+      valor_acumulado: { $sum: "$Valor" },
+      valor_promedio: { $avg: "$Valor" },
+      valor_maximo: { $max: "$Valor" },
+      valor_minimo: { $min: "$Valor" },
+      peso_promedio_kg: { $avg: "$Peso" } } },
+  // Etapa 3: Redondeo y formato de salida
+  { $project: {
+      _id: 0,
+      Clase: "$_id",
+      cantidad_vehiculos: 1,
+      valor_acumulado: 1,
+      valor_promedio: { $round: ["$valor_promedio", 2] },
+      rango_tasacion: {
+        minimo: "$valor_minimo",
+        maximo: "$valor_maximo" },
+      peso_promedio_kg: { $round: ["$peso_promedio_kg", 1] } } },
+  // Etapa 4: Ordenar de mayor a menor cantidad de modelos
+  { $sort: { cantidad_vehiculos: -1 } }])
