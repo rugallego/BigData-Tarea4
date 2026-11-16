@@ -1,6 +1,6 @@
-## Consultas básicas
+CONSULTAS BASICAS
 
-# Inserción
+INSERCION
 
 db.vehiculos.insertOne({
 	CodigoFASECOLDA: 1601253,
@@ -14,17 +14,13 @@ db.vehiculos.insertOne({
 	Valor: 92200000
 })
 
-# Selección
-*************************
+SELECCION
 
 db.vehiculos.find()
 
 db.vehiculos.find({ "Clase": "AUTOMOVIL" }).limit(5)
 
-
-************************
-actualización
-************************
+ACTULIZACION
 
 db.vehiculos.find({ "CodigoFASECOLDA": 1601255 })
 
