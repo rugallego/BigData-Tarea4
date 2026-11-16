@@ -1,0 +1,40 @@
+## Consultas básicas
+
+# Inserción
+
+db.vehiculos.insertOne({
+	CodigoFASECOLDA: 1601253,
+	Marca: "FORD",
+	Clase: "CAMIONETA",
+	Linea: "ESPACE",
+	Version: "SE",
+	Cilindraje: "AT 2000CC 4X2",
+	Peso: 1310,
+	Servicio: "Particular",
+	Valor: 92200000
+})
+
+# Selección
+*************************
+
+db.vehiculos.find()
+
+db.vehiculos.find({ "Clase": "AUTOMOVIL" }).limit(5)
+
+
+************************
+actualización
+************************
+
+db.vehiculos.find({ "CodigoFASECOLDA": 1601255 })
+
+db.vehiculos.updateOne({ "CodigoFASECOLDA": 1601255 },{$set:{ "Valor": 45000000}})
+
+***************************
+eliminación de documentos
+***************************
+
+db.vehiculos.find({ CodigoFASECOLDA: 1601291 })
+
+db.vehiculos.deleteOne({ CodigoFASECOLDA: 1601291 })
+
