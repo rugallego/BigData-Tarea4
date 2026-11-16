@@ -1,5 +1,3 @@
-##CONSULTAS BASICAS##
-
 **INSERCION**
 
 db.vehiculos.insertOne({
