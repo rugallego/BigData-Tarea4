@@ -14,23 +14,20 @@ db.vehiculos.insertOne({
 	Valor: 92200000
 })
 
-SELECCION
+**SELECCION**
 
 db.vehiculos.find()
 
 db.vehiculos.find({ "Clase": "AUTOMOVIL" }).limit(5)
 
-ACTULIZACION
+**ACTULIZACION**
 
 db.vehiculos.find({ "CodigoFASECOLDA": 1601255 })
 
 db.vehiculos.updateOne({ "CodigoFASECOLDA": 1601255 },{$set:{ "Valor": 45000000}})
 
-***************************
-eliminación de documentos
-***************************
+**ELIMINACION DE DOCUMENTOS**
 
 db.vehiculos.find({ CodigoFASECOLDA: 1601291 })
 
 db.vehiculos.deleteOne({ CodigoFASECOLDA: 1601291 })
-
