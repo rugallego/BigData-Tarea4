@@ -1,6 +1,6 @@
-**CONSULTAS BASICAS**
+##CONSULTAS BASICAS##
 
-INSERCION
+**INSERCION**
 
 db.vehiculos.insertOne({
 	CodigoFASECOLDA: 1601253,
