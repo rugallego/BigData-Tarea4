@@ -1,0 +1,32 @@
+**CONSULTA CON UN FILTRO**
+
+db.vehiculos.find({ Cilindraje: { $regex: /^AT/i } },
+  { _id: 0, CodigoFASECOLDA: 1, Linea: 1, Cilindraje: 1, Valor: 1 }
+).limit(5)
+
+**CONSULTA CON FILTRO MULTICRITERIO Y OPERADORES LOGICOS**
+
+db.vehiculos.find({
+  $and: [
+    { Clase: { $in: ["CAMIONETA PASAJ.", "PICKUP DOBLE CAB"] } },
+    { Valor: { $gte: 50000000, $lte: 150000000 } },
+    { Peso: { $gte: 1200 } }
+  ]
+}, { _id: 0, CodigoFASECOLDA: 1, Clase: 1, Linea: 1, Peso: 1, Valor: 1})
+
+**CONSULTA OPERACIÓN DE JOIN CON $LOOKUP**
+
+db.vehiculos.aggregate([
+  { $match: { Clase: "AUTOMOVIL" } },
+  {
+    $lookup: {
+      from: "tipos_servicio",
+      localField: "Servicio",
+      foreignField: "nombre",
+      as: "detalle_normativo"
+    }
+  },
+  { $unwind: "$detalle_normativo" },
+  { $project: { Codigo: "$CodigoFASECOLDA",
+              Linea: 1, Valor: 1,
+              Reglamentacion: "$detalle_normativo.reglamentacion" } }])
