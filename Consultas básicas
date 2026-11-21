@@ -12,6 +12,8 @@ db.vehiculos.insertOne({
 	Valor: 92200000
 })
 
+db.vehiculos.countDocuments()
+
 **SELECCION**
 
 db.vehiculos.find()
@@ -29,3 +31,5 @@ db.vehiculos.updateOne({ "CodigoFASECOLDA": 1601255 },{$set:{ "Valor": 45000000}
 db.vehiculos.find({ CodigoFASECOLDA: 1601291 })
 
 db.vehiculos.deleteOne({ CodigoFASECOLDA: 1601291 })
+
+db.vehiculos.countDocuments()
